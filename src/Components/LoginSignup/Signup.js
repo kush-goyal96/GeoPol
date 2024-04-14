@@ -67,11 +67,13 @@ export const Signup = () => {
   }, [user, pwd, matchPwd]);
 
   // Function to toggle password visibility
-  const toggleconfPasswordVisibility = () => {
+  const toggleconfPasswordVisibility = (e) => {
+    e.preventDefault();
     console.log(showconfPassword);
     setShowconfPassword(!showconfPassword);
   };
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (e) => {
+    e.preventDefault();
     console.log("hello");
     setShowPassword(!showPassword);
   };

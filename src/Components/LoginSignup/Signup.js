@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import img from "../Assets/signinpage_img.svg";
 import line from "../Assets/line.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Signin } from "./Signin";
 import {
   faInfoCircle,
@@ -18,6 +18,9 @@ const PWD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]|:;<>,.?/~]).{8,}$/;
 
 export const Signup = () => {
+
+  const navigate = useNavigate();
+
   const userRef = useRef();
   const errRef = useRef();
 
@@ -73,6 +76,13 @@ export const Signup = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem("user", user);
+    localStorage.setItem("password", pwd);
+    navigate("/signin");
+  };
+
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <p
@@ -82,7 +92,7 @@ export const Signup = () => {
       >
         {errMsg}
       </p>
-      <div className="font-custom1 tracking-wider flex flex-col w-1/2 items-center justify-center">
+      <form onSubmit={handleSubmit} className="font-custom1 tracking-wider flex flex-col w-1/2 items-center justify-center">
         <div>
           <div className="pb-2">
             <div className="font-bold text-5xl pb-2">Sign up</div>
@@ -223,6 +233,7 @@ export const Signup = () => {
             </div>
             <div></div>
             <button
+              type="submit"
               disabled={!validName || !validPwd || !validMatch ? true : false}
               className="bg-[#1C4532] rounded-3xl w-full text-xl text-white font-bold p-3 mt-4"
             >
@@ -230,7 +241,7 @@ export const Signup = () => {
             </button>
           </div>
         </div>
-      </div>
+      </form> 
       <div className="w-1/2 bg-[#2A2B31] flex flex-col h-screen items-center justify-center">
         <div className="items-center justify-center">
           <img src={img} alt="img" />

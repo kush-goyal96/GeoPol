@@ -71,9 +71,6 @@ export const Signin = () => {
             <button onClick={togglePasswordVisibility}>
               <FontAwesomeIcon icon={faEye} className="" />
             </button>
-            <div className="text-right mr-7 pt-1.5 hover:text-[#1C4532] hover:underline underline-offset-2 ">
-              Forgot Password?
-            </div>
           </div>
           <div>
             <button type="submit" className="bg-[#1C4532] rounded-3xl w-full text-xl text-white font-bold p-3 mt-4">
